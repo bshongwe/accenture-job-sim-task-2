@@ -86,9 +86,23 @@ public class SearchController {
         // This is a loop that the code inside will execute on each of the items from the database.
         for (ProductItem item : allItems) {
             // TODO: Figure out if the item should be returned based on the query parameter!
-            boolean matchesSearch = true;
-            itemList.add(item);
+            // boolean matchesSearch = true;
+            // itemList.add(item);
+	    /*
+	     * My solution: using an if statement instead of
+	     * a Boolean so as to filter the product items
+	     * provided by the query parameter using
+	     * productItemRepository.findAll() method,
+	     * filterdItems list, and
+	     * filteredItems list for search result
+	     */
+	    if (item.getName().toLowerCase().contains(query.toLowerCase())) {
+                // If the item matches the query, add it to the filtered list
+                filteredItems.add(item);
+            }
         }
-        return itemList;
+        // return itemList;
+	// Return the filtered list of product items
+	return filteredItems;
     }
 }
